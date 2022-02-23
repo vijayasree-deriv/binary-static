@@ -418,7 +418,7 @@ const TradingEvents = (() => {
         }));
 
         /*
-        * to overcome the delay in loading of purchase button when there is a change excluding input element
+        * to overcome the delay in loading of purchase button
         */
         $('#websocket_form :input').on('input',() => {
             CommonTrading.showPriceOverlay();
