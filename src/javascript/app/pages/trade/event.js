@@ -417,7 +417,9 @@ const TradingEvents = (() => {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
 
-        // to overcome the delay in loading of purchase button 
+        /*
+        * to overcome the delay in loading of purchase button
+        */
         getElementById('websocket_form').addEventListener('change',()=> {
             CommonTrading.showPriceOverlay();
         });
