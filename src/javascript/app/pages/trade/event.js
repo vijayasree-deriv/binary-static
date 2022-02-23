@@ -417,6 +417,20 @@ const TradingEvents = (() => {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
 
+        // to overcome the delay in loading of purchase button 
+        getElementById('websocket_form').addEventListener('change',()=> {
+            CommonTrading.showPriceOverlay();
+        });
+        $('#websocket_form :input').on('input',() => {
+            CommonTrading.showPriceOverlay();
+        });
+
+        getElementById('selected_tick').addEventListener('change', CommonTrading.debounce((e) => {
+            Defaults.set('selected_tick', e.target.value);
+            Price.processPriceRequest();
+            CommonTrading.submitForm(getElementById('websocket_form'));
+        }));
+
         getElementById('selected_tick').addEventListener('change', CommonTrading.debounce((e) => {
             Defaults.set('selected_tick', e.target.value);
             Price.processPriceRequest();
