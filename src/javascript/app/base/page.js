@@ -33,6 +33,7 @@ const EuCloseBanner = require('../common/eu_close_baner');
 const CloseBanner  = require('../common/game_close_banner');
 const RedirectBanner = require('../common/redirect_banner');
 const DerivBanner = require('../common/deriv_banner');
+const { config } = require('../../../../config');
 require('../../_common/lib/polyfills/array.includes');
 require('../../_common/lib/polyfills/string.includes');
 
@@ -83,6 +84,11 @@ const Page = (() => {
         });
     };
 
+    const removeBranding = ()=>{
+        if (config.hide_branding){
+            $('.remove-branding').remove();
+        }
+    };
     const onLoad = () => {
         if (State.get('is_loaded_by_pjax')) {
             Url.reset();
@@ -110,6 +116,7 @@ const Page = (() => {
                     });
                 }
             }
+            removeBranding();
             Header.onLoad();
             Footer.onLoad();
             Language.setCookie();
@@ -150,7 +157,7 @@ const Page = (() => {
                 } else {
                     DerivBanner.loginOnLoad();
                 }
-                
+
             });
         } else {
             Menu.init();
